@@ -1,0 +1,80 @@
+Standard Api
+
+{root.api}/{version}/{grouping}/{endpoint}
+
+Standard Status Response
+
+200 - OK                        --> Call Api Success.
+201 - CREATED                   --> Post Success.
+400 - BAD REQUEST               --> Error on Client Side (cth: Input yang salah, dll).
+401 - UNAUTHORIZED              --> User not authorize to the request.
+403 - FORBIDDEN                 --> User not allowed to access.
+404 - NOT FOUND                 --> Request endpoint not found.
+500 - INTERNAL SERVER ERROR     --> Error on server side.
+502 - BAD GATEWAY               --> Invalid response from another request.
+
+GROUP : Authentication
+
+[1] - Register.
+{root.api}/{version}/auth/register
+req:
+{
+    "name": "Testing",
+    "email": "test@mail.com",
+    "password": "123123"
+}
+
+res:
+{
+    "message": "Register Sucess"
+    "data": {
+        "id": 1,
+        "name": "Testing",
+        "email": "test@mail.com",
+        "password": "123123"
+    }
+}
+
+err-response:
+400 - Input yang anda masukan tidak valid.
+
+[2] - Login.
+{root.api}/{version}/{auth}/login
+
+req:
+{
+    "email": "test@mail.com"
+    "password": "123123"
+}
+
+res:
+Direct to home page
+
+GROUP: BLOG
+
+[1] - Create Blog Post.
+req:
+{
+    "title" : "Title Blog",
+    "image" : "imgFile.png",
+    "body" : "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut, accusamus."
+}
+res:
+{
+    "message" : "Create Blog Post Success",
+    "data": {
+        "post_id" : 1,
+        "title" : "Title Blog",
+        "image" : "imgFile.png",
+        "body" : "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut, accusamus.",
+        "created_at" : "01/02/2023",
+        "author" : {
+            "uid" : 1,
+            "name" : "Testing"
+        }
+    }
+}
+
+[2] - Get Blog Post.
+[3] - Update Blog Post.
+[4] - Delete Blog Post.
